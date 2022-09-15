@@ -1,5 +1,6 @@
 #define PIN_LED 13
-unsigned int count, toggle;
+unsigned int count;
+bool toggle;
 
 void setup() {
     pinMode(PIN_LED, OUTPUT);
@@ -12,15 +13,11 @@ void setup() {
 
 void loop() {
     Serial.println(++count);
-    toggle = toggle_state(toggle);
+    toggle = set_toggle(toggle);
     digitalWrite(PIN_LED, toggle);
     delay(1000);
 }
 
-int toggle_state(int toggle) {
-    if (toggle == LOW) {
-        return HIGH;
-    } else {
-        return LOW;
-    }
+bool set_toggle(bool toggle) {
+    return !toggle;
 }
